@@ -1,9 +1,11 @@
 package com.example.earthquakemonitor
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +27,9 @@ class EqAdapter : ListAdapter<Earthquake, EqAdapter.EqViewHolder>(DiffCallback) 
         }
     }
 
+    //Lambda: Se instancia en una clase y se inicializa en otra
+    lateinit var onItemClickListener: (Earthquake) -> Unit
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EqAdapter.EqViewHolder {
         val binding = EqListItemBinding.inflate(LayoutInflater.from(parent.context))
         return EqViewHolder(binding) //Le pasamos nuestro layout al ViewHolder
@@ -40,6 +45,13 @@ class EqAdapter : ListAdapter<Earthquake, EqAdapter.EqViewHolder>(DiffCallback) 
         fun bind(earthquake: Earthquake){
            binding.eqMagnitudeText.text = earthquake.magnitude.toString()
            binding.eqPlaceText.text = earthquake.place
+           binding.root.setOnClickListener {
+               if(::onItemClickListener.isInitialized){
+               onItemClickListener(earthquake)
+               } else {
+                   Log.d("EqAdapter", "onItemClickListener not initialized")
+               }
+           }
         }
     }
 
