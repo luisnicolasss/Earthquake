@@ -2,6 +2,7 @@ package com.example.earthquakemonitor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.earthquakemonitor.databinding.ActivityMainBinding
 
@@ -25,5 +26,11 @@ class MainActivity : AppCompatActivity() {
         val adapter = EqAdapter()
         binding.eqRecycler.adapter = adapter //Asignamos el adaptar al recyclerView
         adapter.submitList(eqList) //Pasamos la lista de terremotos al adapter
+
+        if(eqList.isEmpty()){
+            binding.eqEmptyView.visibility = View.VISIBLE
+        } else {
+            binding.eqEmptyView.visibility = View.GONE
+        }
     }
 }
