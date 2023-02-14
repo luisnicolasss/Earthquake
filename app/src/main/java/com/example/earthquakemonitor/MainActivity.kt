@@ -37,5 +37,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.eqEmptyView.visibility = View.GONE
         }
+
+        service.getLastHourEarthquakes()
     }
 }
