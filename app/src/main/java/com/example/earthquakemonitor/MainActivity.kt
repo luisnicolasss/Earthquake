@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
-        val adapter = EqAdapter()
+        val adapter = EqAdapter(this)
         binding.eqRecycler.adapter = adapter //Asignamos el adaptar al recyclerView
 
 

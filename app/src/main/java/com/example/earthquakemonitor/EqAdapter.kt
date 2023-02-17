@@ -1,5 +1,6 @@
 package com.example.earthquakemonitor
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,7 @@ import com.example.earthquakemonitor.databinding.EqListItemBinding
 //El adapter justamente adapta los datos al recyclerView
 //El viewHolder se encarga de reciclar las views
 
-class EqAdapter : ListAdapter<Earthquake, EqAdapter.EqViewHolder>(DiffCallback) {
+class EqAdapter(val context: Context) : ListAdapter<Earthquake, EqAdapter.EqViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Earthquake>() {
         override fun areItemsTheSame(oldItem: Earthquake, newItem: Earthquake): Boolean {
@@ -43,7 +44,7 @@ class EqAdapter : ListAdapter<Earthquake, EqAdapter.EqViewHolder>(DiffCallback) 
 
     inner class EqViewHolder(private val binding: EqListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(earthquake: Earthquake){
-           binding.eqMagnitudeText.text = earthquake.magnitude.toString()
+           binding.eqMagnitudeText.text = context.getString(R.string.magnitude_format, earthquake.magnitude)
            binding.eqPlaceText.text = earthquake.place
            binding.root.setOnClickListener {
                if(::onItemClickListener.isInitialized){
