@@ -1,11 +1,12 @@
 package com.example.earthquakemonitor.repository
 
 import com.example.earthquakemonitor.Earthquake
+import com.example.earthquakemonitor.database.EqDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
-class MainRepository {
+class MainRepository(private val database: EqDatabase) {
 
      suspend fun fetchEarthquakes(): MutableList<Earthquake> {
         return withContext(Dispatchers.IO) {

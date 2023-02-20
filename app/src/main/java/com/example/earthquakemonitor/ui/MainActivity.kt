@@ -11,6 +11,7 @@ import com.example.earthquakemonitor.Earthquake
 import com.example.earthquakemonitor.ui.adapter.EqAdapter
 import com.example.earthquakemonitor.presentation.MainViewModel
 import com.example.earthquakemonitor.databinding.ActivityMainBinding
+import com.example.earthquakemonitor.presentation.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.eqRecycler.layoutManager = LinearLayoutManager(this)
-        val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val viewModel = ViewModelProvider(this, MainViewModelFactory(application)).get(MainViewModel::class.java)
 
 
         val adapter = EqAdapter(this)
