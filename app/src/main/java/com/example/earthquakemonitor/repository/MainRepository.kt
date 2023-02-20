@@ -13,7 +13,10 @@ class MainRepository(private val database: EqDatabase) {
             val eqListString = service.getLastHourEarthquakes()
             val eqList = parseEqResult(eqListString)
 
-            eqList
+            database.eqDao.insertAll(eqList) //Guardamos los datos en la base de datos
+
+            val earthquakes = database.eqDao.getEarthquakes()
+            earthquakes
         }
     }
 

@@ -1,6 +1,8 @@
 package com.example.earthquakemonitor.presentation
 
 import android.app.Application
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +12,7 @@ import com.example.earthquakemonitor.Earthquake
 import com.example.earthquakemonitor.database.getDatabase
 import com.example.earthquakemonitor.repository.MainRepository
 import kotlinx.coroutines.*
+import java.net.UnknownHostException
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
@@ -22,8 +25,12 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
 
     init {
        viewModelScope.launch {
-            _eqList.value = repository.fetchEarthquakes()
-        }
+           try {
+               _eqList.value = repository.fetchEarthquakes()
+           } catch (e: UnknownHostException) {
+               Log.d(TAG, "No internet connection", e)
+           }
+       }
     }
 
 
