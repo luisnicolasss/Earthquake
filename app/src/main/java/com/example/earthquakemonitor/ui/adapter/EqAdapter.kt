@@ -1,15 +1,14 @@
-package com.example.earthquakemonitor
+package com.example.earthquakemonitor.ui.adapter
 
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.earthquakemonitor.Earthquake
+import com.example.earthquakemonitor.R
 import com.example.earthquakemonitor.databinding.EqListItemBinding
 
 
@@ -31,13 +30,13 @@ class EqAdapter(val context: Context) : ListAdapter<Earthquake, EqAdapter.EqView
     //Lambda: Se instancia en una clase y se inicializa en otra
     lateinit var onItemClickListener: (Earthquake) -> Unit
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EqAdapter.EqViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EqViewHolder {
         val binding = EqListItemBinding.inflate(LayoutInflater.from(parent.context))
         return EqViewHolder(binding) //Le pasamos nuestro layout al ViewHolder
     }
 
     //Pintamos los datos en el RecyclerView
-    override fun onBindViewHolder(holder: EqAdapter.EqViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EqViewHolder, position: Int) {
         val earthquake = getItem(position)
          holder.bind(earthquake)
     }

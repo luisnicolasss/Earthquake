@@ -1,4 +1,4 @@
-package com.example.earthquakemonitor
+package com.example.earthquakemonitor.repository
 
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory

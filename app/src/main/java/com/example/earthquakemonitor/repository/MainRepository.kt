@@ -1,5 +1,6 @@
-package com.example.earthquakemonitor
+package com.example.earthquakemonitor.repository
 
+import com.example.earthquakemonitor.Earthquake
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
