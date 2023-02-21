@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".EqDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp">
+
+        <TextView
+            android:id="@+id/magnitudeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="4.6"
+            android:textSize="76sp"
+            android:textColor="@color/magnitude_safe"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Richter"
+            android:textSize="24sp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="42dp"
+        android:gravity="center_vertical">
+
+     <ImageView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:src="@drawable/baseline_place_24"/>
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:orientation="vertical">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Longitude"
+              android:textColor="@color/black"
+              android:textSize="16sp"
+              />
+
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Latitude"
+              android:textColor="@color/black"
+              android:layout_marginTop="8dp"
+              android:textSize="16sp"
+              />
+
+      </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <TextView
+            android:id="@+id/longitudeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="-102.01925"
+            android:textSize="16sp"
+            android:textColor="@color/concrete"/>
+
+            <TextView
+                android:id="@+id/latitudeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="19.125636"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textColor="@color/concrete"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/clouds"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_warning_24"/>
+
+        <TextView
+            android:id="@+id/placeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="97 km S of Wonosari, Indonesia"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/clouds"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_access_time_filled_24"/>
+
+        <TextView
+            android:id="@+id/timeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="November 17 - 16:39:57"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+</LinearLayout>

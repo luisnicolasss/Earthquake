@@ -1,5 +1,6 @@
 package com.example.earthquakemonitor.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.earthquakemonitor.Earthquake
+import com.example.earthquakemonitor.EqDetailActivity
 import com.example.earthquakemonitor.ui.adapter.EqAdapter
 import com.example.earthquakemonitor.presentation.MainViewModel
 import com.example.earthquakemonitor.databinding.ActivityMainBinding
@@ -25,6 +27,10 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = EqAdapter(this)
         binding.eqRecycler.adapter = adapter //Asignamos el adaptar al recyclerView
+
+        adapter.onItemClickListener = {
+            openDetailActivity(it)
+        }
 
 
         viewModel.eqList.observe(this, Observer { eqList ->
@@ -45,5 +51,11 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.eqEmptyView.visibility = View.GONE
         }
+    }
+
+    private fun openDetailActivity(earthquake: Earthquake) {
+        val intent = Intent(this, EqDetailActivity::class.java)
+        intent.putExtra(EqDetailActivity.EQ_KEY, earthquake)
+        startActivity(intent)
     }
 }
