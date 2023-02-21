@@ -1,7 +1,9 @@
-package com.example.earthquakemonitor
+package com.example.earthquakemonitor.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.earthquakemonitor.Earthquake
+import com.example.earthquakemonitor.R
 import com.example.earthquakemonitor.databinding.ActivityEqDetailBinding
 import java.text.SimpleDateFormat
 import java.util.*

@@ -1,5 +1,6 @@
 package com.example.earthquakemonitor.repository
 
+import androidx.lifecycle.LiveData
 import com.example.earthquakemonitor.Earthquake
 import com.example.earthquakemonitor.database.EqDatabase
 import kotlinx.coroutines.Dispatchers
@@ -8,15 +9,16 @@ import org.json.JSONObject
 
 class MainRepository(private val database: EqDatabase) {
 
-     suspend fun fetchEarthquakes(): MutableList<Earthquake> {
+    val eqList: LiveData<MutableList<Earthquake>> = database.eqDao.getEarthquakes()
+
+    suspend fun fetchEarthquakes() {
         return withContext(Dispatchers.IO) {
             val eqListString = service.getLastHourEarthquakes()
             val eqList = parseEqResult(eqListString)
 
             database.eqDao.insertAll(eqList) //Guardamos los datos en la base de datos
 
-            val earthquakes = database.eqDao.getEarthquakes()
-            earthquakes
+
         }
     }
 
@@ -36,7 +38,7 @@ class MainRepository(private val database: EqDatabase) {
             val time = propertiesJsonObject.getLong("time")
 
             val geometryJsonObject = featuresJsonObject.getJSONObject("geometry")
-            val coordinatesJsonArray  = geometryJsonObject.getJSONArray("coordinates")
+            val coordinatesJsonArray = geometryJsonObject.getJSONArray("coordinates")
             val longitude = coordinatesJsonArray.getDouble(0)
             val latitude = coordinatesJsonArray.getDouble(1)
 

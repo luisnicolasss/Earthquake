@@ -7,6 +7,6 @@ import androidx.versionedparcelable.VersionedParcelize
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity("earthquakes")
+@Entity(tableName = "earthquakes")
 data class Earthquake(@PrimaryKey val id: String, val place: String, val magnitude: Double, val time: Long,
                  val longitude: Double, val latitude: Double) : Parcelable

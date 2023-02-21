@@ -9,11 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.earthquakemonitor.Earthquake
-import com.example.earthquakemonitor.EqDetailActivity
 import com.example.earthquakemonitor.ui.adapter.EqAdapter
 import com.example.earthquakemonitor.presentation.MainViewModel
 import com.example.earthquakemonitor.databinding.ActivityMainBinding
 import com.example.earthquakemonitor.presentation.MainViewModelFactory
+import com.example.earthquakemonitor.repository.ApiResponseStatus
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.eqRecycler.layoutManager = LinearLayoutManager(this)
-        val viewModel = ViewModelProvider(this, MainViewModelFactory(application)).get(MainViewModel::class.java)
+        val viewModel = ViewModelProvider(
+            this,
+            MainViewModelFactory(application)
+        ).get(MainViewModel::class.java)
 
 
         val adapter = EqAdapter(this)
@@ -38,6 +41,17 @@ class MainActivity : AppCompatActivity() {
 
             handleEmptyView(eqList, binding)
         })
+
+        viewModel.status.observe(this, Observer {
+            apiResponseStatus ->
+            if(apiResponseStatus == ApiResponseStatus.LOADING){
+                binding.loadingWheel.visibility = View.VISIBLE
+            } else if (apiResponseStatus == ApiResponseStatus.DONE){
+               binding.loadingWheel.visibility = View.GONE
+            } else if (apiResponseStatus == ApiResponseStatus.NOT_INTERNET){
+                binding.loadingWheel.visibility = View.GONE
+            }
+         })
 
         adapter.onItemClickListener = {
             Toast.makeText(this, it.place, Toast.LENGTH_SHORT).show()
